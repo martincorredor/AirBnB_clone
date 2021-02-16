@@ -7,9 +7,30 @@ from datetime import datetime
 class BaseModel():
     """This is Base Class for this proyect"""
 
-    id = str(uuid.uuid4())
-    created_at = datetime.now()
-    update_at = datetime.now()
+    def __init__(self, *args, **kargs):
+        """
+        Constructor method
+        Arguments
+            - *args: is a list with all individual arguments(won't be used)
+            - **kargs: is a dictionary with all arguments 
+        """
+        if kargs:
+            for k, v in kargs.items():
+                if "__class__" == k:
+                    pass
+                elif "created_at" == k:
+                    self.created_at = datetime.strptime(kargs["created_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                elif "update_at" == k:
+                    self.update_at = datetime.strptime(kargs["update_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    setattr(self, k, v)                    
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.update_at = datetime.now()
+
 
     def __str__(self):
         """Prints class description"""
