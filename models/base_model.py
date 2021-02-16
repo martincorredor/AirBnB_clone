@@ -12,8 +12,8 @@ class BaseModel():
         Constructor method
         Arguments
             - *args: is a list with all individual arguments(won't be used)
-            - **kargs: is a dictionary with all arguments 
-        """
+            - **kargs: is a dictionary with all arguments
+                    """
         if kargs:
             for k, v in kargs.items():
                 if "__class__" == k:
@@ -23,27 +23,26 @@ class BaseModel():
                                                         "%Y-%m-%dT%H:%M:%S.%f")
                 elif "update_at" == k:
                     self.update_at = datetime.strptime(kargs["update_at"],
-                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                                                       "%Y-%m-%dT%H:%M:%S.%f")
                 else:
-                    setattr(self, k, v)                    
+                    setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.update_at = datetime.now()
 
-
     def __str__(self):
         """Prints class description"""
-        return ("[{}] ({}) {}"\
-            .format(self.__class__.__name__, self.id, self.__dict__))
-    
+        return ("[{}] ({}) {}".
+                format(self.__class__.__name__, self.id, self.__dict__))
+
     def save(self):
         """
         Updates the public instance atributte update_at
         with the current datetime
         """
         self.update_at = datetime.now()
-    
+
     def to_dict(self):
         """
         Return dictionary containing all keys/values
