@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
-"""
-Module for FileStorage (create a unique instance for my application)
-"""
+#!/bin/usr/env python3
+"""Module for FileStorage (Create a unique instance for my application)."""
 from models.engine.file_storage import FileStorage
 
 
