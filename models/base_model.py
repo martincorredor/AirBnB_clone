@@ -22,15 +22,15 @@ class BaseModel():
                 elif "created_at" == k:
                     self.created_at = datetime.strptime(kargs["created_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
-                elif "update_at" == k:
-                    self.update_at = datetime.strptime(kargs["update_at"],
-                                                       "%Y-%m-%dT%H:%M:%S.%f")
+                elif "updated_at" == k:
+                    self.updated_at = datetime.strptime(kargs["updated_at"],
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.update_at = datetime.now()
+            self.updated_at = datetime.now()
             storage.new(self)
 
     def __str__(self):
@@ -43,7 +43,7 @@ class BaseModel():
         Updates the public instance atributte update_at
         with the current datetime
         """
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
@@ -52,7 +52,7 @@ class BaseModel():
         of __dict__ of the instance
         """
         my_dict = self.__dict__.copy()
-        my_dict.update({'__class__': self.__class__.__name__})
-        my_dict.update({'created_at': self.created_at.isoformat()})
-        my_dict.update({'update_at': self.update_at.isoformat()})
+        my_dict.updated({'__class__': self.__class__.__name__})
+        my_dict.updated({'created_at': self.created_at.isoformat()})
+        my_dict.updated({'update_at': self.update_at.isoformat()})
         return my_dict
