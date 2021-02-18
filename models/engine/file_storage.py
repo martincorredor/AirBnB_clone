@@ -50,7 +50,7 @@ Place": Place, "Review": Review, "State": State, "User": User}
         only if JSON file exist
         """
         try:
-            with open(__file_path, "r") as f:
+            with open(self.__file_path, "r") as f:
                 new_obj = json.load(f)
             for k, v in new_obj.items():
                 obj = self.class_dict[v["__class__"]](**v)
