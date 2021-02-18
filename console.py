@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[name]
                 storage.save()
 
-    def do_all(self, arg):
+    def do_all(self, line):
         """
          Prints all string representation of all instances
          based or not on the class name
@@ -109,45 +109,45 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             for objs in storage.all().values():
                 print(objs)
-        elif arg[0] not in classes:
+        elif arg[0] not in self.modules:
             print("** class doesn't exist **")
         else:
             for k, objs in storage.all().items():
                 if arg[0] in k:
                     print(storage.all()[k])
 
-    def do_update(self, arg):
+    def do_update(self, line):
         """
         Updates an instance based on the class name
         and id by adding or updating attribute
         (save the change into the JSON file)
         """
-        line = arg.split()
+        arg = line.split()
         if len(arg) == 0:
             print("** class name missing **")
-        elif line[0] not in classes:
+        elif arg[0] not in self.modules:
             print("** class doesn't exist **")
-        elif len(line) == 1:
+        elif len(arg) == 1:
             print("** instance id missing **")
         else:
-            check_id = "{}.{}".format(line[0], line[1])
+            check_id = "{}.{}".format(arg[0], arg[1])
             if check_id not in storage.all().keys():
                 print("** no instance found **")
-            elif len(line) == 2:
+            elif len(arg) == 2:
                 print("** attribute name missing **")
-            elif len(line) == 3:
+            elif len(arg) == 3:
                 print("** value missing **")
             else:
-                cast = type(eval(line[3]))
-                arg_3 = line[3].strip('"')
-                setattr(storage.all()[check_id], line[2], cast(arg_3))
+                cast = type(eval(arg[3]))
+                arg_3 = arg[3].strip('"')
+                setattr(storage.all()[check_id], arg[2], cast(arg_3))
                 storage.all()[check_id].save()
 
-    def do_count(self, arg):
+    def do_count(self, line):
         """\n Update the number of instances of a class\n"""
         count = 0
         for k, objs in storage.all().items():
-            if arg in k:
+            if line in k:
                 count += 1
             print(count)
 
