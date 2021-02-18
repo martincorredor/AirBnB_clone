@@ -41,24 +41,23 @@ class HBNBCommand(cmd.Cmd):
         if line:
             args = line.split(' ')
         
-        if args[0] not in self.modules:
-            print("** class doesn't exist **")
-        else:
-            if args[0] == self.modules[0]:
-                instance = BaseModel()
-            elif args[0] == self.modules[1]:
-                instance = User()
-            elif args[0] == self.modules[2]:
-                instance = State()
-            elif args[0] == self.modules[3]:
-                instance = Amenity()
-            elif args[0] == self.modules[4]:
-                instance = Place()
-            elif args[0] == self.modules[5]:
-                instance = Review()
-            instance.save()
-            print(instance.id)
-            
+            if args[0] not in self.modules:
+                print("** class doesn't exist **")
+            else:
+                if args[0] == self.modules[0]:
+                    instance = BaseModel()
+                elif args[0] == self.modules[1]:
+                    instance = User()
+                elif args[0] == self.modules[2]:
+                    instance = State()
+                elif args[0] == self.modules[3]:
+                    instance = Amenity()
+                elif args[0] == self.modules[4]:
+                    instance = Place()
+                elif args[0] == self.modules[5]:
+                    instance = Review()
+                instance.save()
+                print(instance.id)
         else:
             print("** class name missing **")
 
@@ -68,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id
         """
         args = line.split(' ')
-        if len(line) is 0:
+        if len(line) == 0:
             print("** class name missing **")
         elif args[0] not in self.modules:
             print("** class doesn't exist **")
@@ -87,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         and id (save the change into the JSON file)
         """
         arg = line.split(' ')
-        if len(line) is 0:
+        if len(line) == 0:
             print("** class name missing **")
         elif arg[0] not in self.modules:
             print("** class doesn't exist **")
@@ -107,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
          based or not on the class name
         """
         arg = line.split(' ')
-        if len(line) is 0:
+        if len(line) == 0:
             for objs in storage.all().values():
                 print(objs)
         elif arg[0] not in classes:
@@ -124,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file)
         """
         line = arg.split()
-        if len(arg) is 0:
+        if len(arg) == 0:
             print("** class name missing **")
         elif line[0] not in classes:
             print("** class doesn't exist **")
