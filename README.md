@@ -12,7 +12,7 @@ This step consists of creating a shell to manage AirBnB objects. As a command in
 
 **This project is part of the Holberton School Full-Stack Software Engineer program.**
 
-### How to install it? :question: ###
+### How to install it?
 To have this repository and its content, you must execute the following on your terminal:
 ~~~
 $ git clone https://github.com/martincorredor/AirBnB_clone.git
