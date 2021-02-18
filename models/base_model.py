@@ -52,7 +52,7 @@ class BaseModel():
         of __dict__ of the instance
         """
         my_dict = self.__dict__.copy()
-        my_dict.updated({'__class__': self.__class__.__name__})
-        my_dict.updated({'created_at': self.created_at.isoformat()})
-        my_dict.updated({'update_at': self.update_at.isoformat()})
+        my_dict.update({'__class__': self.__class__.__name__})
+        my_dict.update({'created_at': self.created_at.isoformat()})
+        my_dict.update({'updated_at': self.updated_at.isoformat()})
         return my_dict
