@@ -28,11 +28,11 @@ class HBNBCommand(cmd.Cmd):
         """Quit or "finally" my command interpreter"""
         print()
         return True
-    
+
     def emptyline(self):
         """Do not execute anything\n"""
         pass
-    
+
     def do_create(self, line):
         """
         Creates a new instance of BaseModel
@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line:
             args = line.split()
-        
+
             if args[0] not in self.modules:
                 print("** class doesn't exist **")
             else:
@@ -152,6 +152,7 @@ class HBNBCommand(cmd.Cmd):
             if line in k:
                 count += 1
             print(count)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
